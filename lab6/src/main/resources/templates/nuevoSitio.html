@@ -1,0 +1,48 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <link rel="icon" th:href="@{/img/icon.png}" type="image/x-icon" />
+  <title>Nuevo Sitio</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/fontawesome-all.min.css}">
+</head>
+<body>
+<div class='container'>
+  <main>
+    <div class="container px-4 py-5">
+      <h1 class="pb-2 mb-3 border-bottom">Nuevo Sitio</h1>
+      <form method="post" th:action="@{/sitios/save}" class="mt-2">
+        <div class="mb-3">
+          <label for="siteName" class="form-label">Nombre</label>
+          <input type="text" class="form-control" name="siteName" id="siteName">
+        </div>
+        <div class="mb-3">
+          <label for="locationID" class="form-label">Selecciona Locacion</label>
+          <select class="form-select" name="locationID" id="locationID">
+            <option th:each="sitio: ${listaSitios}"
+                    th:text="${sitio.locationID.country + ' - ' + sitio.locationID.city}" th:value="${sitio.id}">Open this select menu</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="installationDate" class="form-label">Fecha de Instalación</label>
+          <input type="date" class="form-control" name="installationDate" id="installationDate">
+        </div>
+        <div class="mb-3">
+          <label for="latitude" class="form-label">Latitud</label>
+          <input type="text" class="form-control" name="latitude" id="latitude">
+        </div>
+        <div class="mb-3">
+          <label for="longitude" class="form-label">Longitud</label>
+          <input type="text" class="form-control" name="longitude" id="longitude">
+        </div>
+
+        <a th:href="@{/sitios/lista}" class="btn btn-danger">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+      </form>
+    </div>
+  </main>
+</div>
+</body>
+</html>
